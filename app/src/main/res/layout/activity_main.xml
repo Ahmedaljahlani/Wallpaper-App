@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+    <!--linear layout for displaying search bar-->
+    <LinearLayout
+        android:id="@+id/idLL1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/search_back"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal"
+        android:weightSum="4">
+        <!--edit text for displaying edittext-->
+        <EditText
+            android:id="@+id/idEdtSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3.5"
+            android:hint="Search Wallpapers"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black_shade_1"
+            android:textSize="15sp"
+            app:backgroundTint="@android:color/transparent" />
+
+        <!--image view for displaying search icon-->
+        <ImageView
+            android:id="@+id/idIVSearch"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:padding="4dp"
+            android:src="@drawable/loupe" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/idTVCategoryLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idLL1"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:text="Featured"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+    <!--recycler view for displaying categories-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRVCategories"
+        style="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/idTVCategoryLabel"
+        android:layout_marginStart="5dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/category_rv_item" />
+
+    <!--    &lt;!&ndash;progress bar for loading indicator&ndash;&gt;-->
+    <!--    <ProgressBar-->
+    <!--        android:id="@+id/idPBLoading"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:indeterminate="true"-->
+    <!--        android:visibility="gone" />-->
+
+    <TextView
+        android:id="@+id/idTVRecent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idRVCategories"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="5dp"
+        android:text="Recent"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/idTVRecent"
+        android:orientation="vertical">
+        <!--progress bar for loading indicator-->
+        <ProgressBar
+            android:id="@+id/idPBLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="visible" />
+        <!--recycler view for displaying wallpapers-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idRVWallpapers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/black_shade_1" />
+
+        <TextView
+            android:id="@+id/idNoConnection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No connection"
+            android:layout_above="@+id/check_internet"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/check_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Retry"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
