@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
         window.setStatusBarColor(this.getResources().getColor(R.color.splash_background));
 
 
-        ImageView splash=findViewById(R.id.idSplashImg);
+        ImageView splash = findViewById(R.id.idSplashImg);
         // To add rotate animation
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anim);
         splash.startAnimation(animation);

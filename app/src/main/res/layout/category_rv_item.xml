@@ -5,8 +5,8 @@
     android:layout_height="120dp"
     android:layout_gravity="center"
     android:layout_margin="2dp"
-    app:cardCornerRadius="12dp"
-    app:backgroundTint="#A6000000">
+    app:backgroundTint="#A6000000"
+    app:cardCornerRadius="12dp">
 
     <RelativeLayout
         android:layout_width="match_parent"

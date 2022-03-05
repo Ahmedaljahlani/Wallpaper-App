@@ -34,7 +34,7 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull viewHolder holder,int position) {
+    public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         CategoryRVModel model = categoryRVModels.get(position);
         holder.categoryTV.setText(model.getCategory());
 //        holder.recent.setText(model.getCategory());
