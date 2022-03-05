@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -16,8 +18,10 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class WallpaperRVAdapter extends RecyclerView.Adapter<WallpaperRVAdapter.viewHolder> {
+
     private final ArrayList<String> wallpaperList;
     private final Context context;
+    Animation translate_anim;
 
     public WallpaperRVAdapter(ArrayList<String> wallpaperList, Context context) {
         this.wallpaperList = wallpaperList;
@@ -49,7 +53,7 @@ public class WallpaperRVAdapter extends RecyclerView.Adapter<WallpaperRVAdapter.
         return wallpaperList.size();
     }
 
-    public static class viewHolder extends RecyclerView.ViewHolder {
+    class viewHolder extends RecyclerView.ViewHolder {
         private final CardView imgCV;
         private final ImageView wallpaper;
 
@@ -57,7 +61,8 @@ public class WallpaperRVAdapter extends RecyclerView.Adapter<WallpaperRVAdapter.
             super(itemView);
             imgCV = itemView.findViewById(R.id.idCVWallpaper);
             wallpaper = itemView.findViewById(R.id.idIVWallpaper);
-
+            translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
+            imgCV.setAnimation(translate_anim);
         }
     }
 }

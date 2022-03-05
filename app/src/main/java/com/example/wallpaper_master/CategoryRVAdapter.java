@@ -34,7 +34,7 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull viewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull viewHolder holder,int position) {
         CategoryRVModel model = categoryRVModels.get(position);
         holder.categoryTV.setText(model.getCategory());
 //        holder.recent.setText(model.getCategory());
@@ -48,6 +48,7 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.vi
             @Override
             public void onClick(View v) {
                 categoryClickInterface.onCategoryClick(position);
+//                holder.recent.setText(model.getCategory());
             }
         });
     }
@@ -71,7 +72,7 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.vi
 
             categoryIV = itemView.findViewById(R.id.idIVCategory);
             categoryTV = itemView.findViewById(R.id.idTVCategory);
-            recent=itemView.findViewById(R.id.idTVRecent);
+            recent = itemView.findViewById(R.id.idTVRecent);
         }
     }
 }

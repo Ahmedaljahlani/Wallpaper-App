@@ -16,5 +16,6 @@
     <color name="button_back">#3D4149</color>
 
     <color name="splash_background">#2596be</color>
+    <color name="transparent_black">#99000000</color>
 
 </resources>

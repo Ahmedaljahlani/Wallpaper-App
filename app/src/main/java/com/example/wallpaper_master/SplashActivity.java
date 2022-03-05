@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 public class SplashActivity extends AppCompatActivity {
-    private final int SPLASH_SCREEN = 1500;
+    private final int SPLASH_SCREEN = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +32,6 @@ public class SplashActivity extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anim);
         splash.startAnimation(animation);
 
-//        Window window = this.getWindow();
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        window.setStatusBarColor(this.getResources().getColor(R.color.splash_background));
-
-//        ProgressBar progressBar = findViewById(R.id.idPBLoading);
-//        progressBar.setVisibility(View.GONE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

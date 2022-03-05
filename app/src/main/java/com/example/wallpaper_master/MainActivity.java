@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRVAdapter
             public void onErrorResponse(VolleyError error) {
                 loadingPB.setVisibility(View.GONE);
                 retrieveDataOffline();
-                Toast.makeText(MainActivity.this, "Fail to get data..", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Network error occurred", Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override

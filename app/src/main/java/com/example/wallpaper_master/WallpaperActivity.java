@@ -3,7 +3,10 @@ package com.example.wallpaper_master;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.WallpaperManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,6 +20,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -38,12 +42,13 @@ import java.util.Locale;
 public class WallpaperActivity extends AppCompatActivity {
 
     WallpaperManager wallpaperManager;
-    ImageView imageView,failToLoad;
+    ImageView imageView;
+    LinearLayout failToLoad, bottomBtns;
     String url;
     Bitmap bitmap;
     BitmapDrawable drawable;
     OutputStream outputStream;
-    Button download,setWallpaper;
+    Button download, setWallpaper, retry;
     private ProgressBar LoadingPB;
     private static final int WRITE_EXTERNAL_STORAGE_CODE = 100;
 
@@ -52,31 +57,15 @@ public class WallpaperActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_wallpaper);
-        failToLoad=findViewById(R.id.fail);
+
+        failToLoad = findViewById(R.id.fail);
+        bottomBtns = findViewById(R.id.IdBottomButtons);
 
         url = getIntent().getStringExtra("imgUrl");
         imageView = findViewById(R.id.image);
         LoadingPB = findViewById(R.id.idPBLoading);
 
-//        Picasso.get().load(url).into(imageView);
-//        LoadingPB.setVisibility(View.GONE);
-
-        Glide.with(this).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).listener(new RequestListener<Drawable>() {
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-
-                LoadingPB.setVisibility(View.GONE);
-                failToLoad.setVisibility(View.VISIBLE);
-                Toast.makeText(WallpaperActivity.this, "Field To load wallpaper", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                LoadingPB.setVisibility(View.GONE);
-                return false;
-            }
-        }).into(imageView);
+        loadingWallpapers();
 
         wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
         setWallpaper = findViewById(R.id.idBtnSetWallpaper);
@@ -115,9 +104,46 @@ public class WallpaperActivity extends AppCompatActivity {
                 saveImage();
             }
         });
+
+    }
+
+    public void loadingWallpapers() {
+
+        //Picasso.get().load(url).into(imageView);
+        //LoadingPB.setVisibility(View.GONE);
+        Glide.with(this).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+
+                LoadingPB.setVisibility(View.GONE);
+                failToLoad.setVisibility(View.VISIBLE);
+                bottomBtns.setVisibility(View.GONE);
+                Toast.makeText(WallpaperActivity.this, "Field To load wallpaper", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                LoadingPB.setVisibility(View.GONE);
+                return false;
+            }
+        }).into(imageView);
+    }
+
+    // Function to check and request permission.
+    public void checkPermission(String permission, int requestCode) {
+        if (ContextCompat.checkSelfPermission(WallpaperActivity.this, permission) == PackageManager.PERMISSION_DENIED) {
+
+            // Requesting the permission
+            ActivityCompat.requestPermissions(WallpaperActivity.this, new String[]{permission}, requestCode);
+        } else {
+            Toast.makeText(WallpaperActivity.this, "Permission already granted", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void saveImage() {
+        //checking permission
+        checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE_CODE);
         bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         String time = new SimpleDateFormat("yyyMMdd_HHmmss", Locale.getDefault()).format(System.currentTimeMillis());
 
