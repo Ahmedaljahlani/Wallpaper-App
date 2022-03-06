@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements CategoryRVAdapter
         searchEdit = findViewById(R.id.idEdtSearch);
         searchIV = findViewById(R.id.idIVSearch);
         loadingPB = findViewById(R.id.idPBLoading);
+        recent = findViewById(R.id.idTVRecent);
+
         wallpaperArrayList = new ArrayList<>();
         categoryRVModels = new ArrayList<>();
 
@@ -214,10 +216,10 @@ public class MainActivity extends AppCompatActivity implements CategoryRVAdapter
         categoryRVModels.add(new CategoryRVModel("Condensation", "https://images.pexels.com/photos/891030/pexels-photo-891030.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"));
     }
 
-
     @Override
     public void onCategoryClick(int position) {
         String category = categoryRVModels.get(position).getCategory();
+        recent.setText(category);
         getWallpapersByCategory(category);
     }
 

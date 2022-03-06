@@ -37,7 +37,6 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.vi
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         CategoryRVModel model = categoryRVModels.get(position);
         holder.categoryTV.setText(model.getCategory());
-//        holder.recent.setText(model.getCategory());
         if (!model.getImgUrl().isEmpty()) {
             Glide.with(context).load(model.getImgUrl()).placeholder(R.color.black_shade_1).into(holder.categoryIV);
         } else {
@@ -48,7 +47,6 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.vi
             @Override
             public void onClick(View v) {
                 categoryClickInterface.onCategoryClick(position);
-//                holder.recent.setText(model.getCategory());
             }
         });
     }
@@ -64,7 +62,6 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.vi
 
     public static class viewHolder extends RecyclerView.ViewHolder {
         private final TextView categoryTV;
-        private final TextView recent;
         private final ImageView categoryIV;
 
         public viewHolder(@NonNull View itemView) {
@@ -72,7 +69,6 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.vi
 
             categoryIV = itemView.findViewById(R.id.idIVCategory);
             categoryTV = itemView.findViewById(R.id.idTVCategory);
-            recent = itemView.findViewById(R.id.idTVRecent);
         }
     }
 }
