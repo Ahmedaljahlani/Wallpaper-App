@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 public class SplashActivity extends AppCompatActivity {
-    private final int SPLASH_SCREEN = 1000;
+    private final int SPLASH_SCREEN = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

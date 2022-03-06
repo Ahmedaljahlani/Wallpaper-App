@@ -321,6 +321,5 @@ public class MainActivity extends AppCompatActivity implements CategoryRVAdapter
             wallpaperArrayList.add(url);
         }
         db.closeDB();
-//
     }
 }
