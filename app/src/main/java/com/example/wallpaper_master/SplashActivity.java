@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 public class SplashActivity extends AppCompatActivity {
-    private final int SPLASH_SCREEN = 1500;
+    private final int SPLASH_SCREEN = 900;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
 
         ImageView splash = findViewById(R.id.idSplashImg);
         // To add rotate animation
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_anim);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_anim);
         splash.startAnimation(animation);
 
         new Handler().postDelayed(new Runnable() {

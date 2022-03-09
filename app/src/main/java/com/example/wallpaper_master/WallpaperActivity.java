@@ -76,7 +76,7 @@ public class WallpaperActivity extends AppCompatActivity {
                 Glide.with(WallpaperActivity.this).asBitmap().load(url).listener(new RequestListener<Bitmap>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-                        Toast.makeText(WallpaperActivity.this, "Fail to load image..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WallpaperActivity.this, "فشل التحميل..", Toast.LENGTH_SHORT).show();
                         return false;
                     }
 
@@ -84,15 +84,15 @@ public class WallpaperActivity extends AppCompatActivity {
                     public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
                         try {
                             wallpaperManager.setBitmap(resource);
-                            Toast.makeText(WallpaperActivity.this, "Wallpaper Set to Home Screen", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WallpaperActivity.this, "تم التعيين بنجاح", Toast.LENGTH_SHORT).show();
                         } catch (IOException e) {
-                            Toast.makeText(WallpaperActivity.this, "Fail to Set Wallpaper", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WallpaperActivity.this, "فشل التحميل", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                         return false;
                     }
                 }).submit();
-                FancyToast.makeText(WallpaperActivity.this, "Wallpaper Set to Home Screen", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                FancyToast.makeText(WallpaperActivity.this, "تم التعيين بنجاح", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
             }
         });
 
@@ -118,7 +118,7 @@ public class WallpaperActivity extends AppCompatActivity {
                 LoadingPB.setVisibility(View.GONE);
                 failToLoad.setVisibility(View.VISIBLE);
                 bottomBtns.setVisibility(View.GONE);
-                Toast.makeText(WallpaperActivity.this, "Field To load wallpaper", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WallpaperActivity.this, "فشل التحميل", Toast.LENGTH_SHORT).show();
                 return false;
             }
 
@@ -162,7 +162,7 @@ public class WallpaperActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
             out.flush();
             out.close();
-            Toast.makeText(WallpaperActivity.this, "Image saved Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(WallpaperActivity.this, "تم التحميل بنجاح", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(WallpaperActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }

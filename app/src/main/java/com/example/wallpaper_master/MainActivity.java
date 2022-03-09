@@ -160,16 +160,19 @@ public class MainActivity extends AppCompatActivity implements CategoryRVAdapter
             @Override
             public void onResponse(JSONObject response) {
                 loadingPB.setVisibility(View.GONE);
+                JSONObject photoObj;
+                String imgUrl="";
+
                 try {
                     JSONArray photos = response.getJSONArray("photos");
                     for (int i = 0; i < photos.length(); i++) {
-                        JSONObject photoObj = photos.getJSONObject(i);
-                        String imgUrl = photoObj.getJSONObject("src").getString("portrait");
+                        photoObj = photos.getJSONObject(i);
+                        imgUrl = photoObj.getJSONObject("src").getString("portrait");
                         db.delete(imgUrl);
                         save(imgUrl);
-//                        db.update(imgUrl);
                         wallpaperArrayList.add(imgUrl);
                     }
+                    Toast.makeText(MainActivity.this, "تم تحديث الخلفيات بنجاج", Toast.LENGTH_SHORT).show();
                     wallpaperRVAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -180,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRVAdapter
             public void onErrorResponse(VolleyError error) {
                 loadingPB.setVisibility(View.GONE);
                 retrieveDataOffline();
-                Toast.makeText(MainActivity.this, "Network error occurred", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "Network error occurred", Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -304,11 +307,11 @@ public class MainActivity extends AppCompatActivity implements CategoryRVAdapter
         DBAdapter db = new DBAdapter(this);
         db.openDB();
         result = db.add(url);
-        if (result == 1) {
-            Toast.makeText(this, "Wallpapers updated successfully", Toast.LENGTH_SHORT).show();
-        } else {
-
-        }
+//        if (result == 1) {
+//            Toast.makeText(this, "Wallpapers updated successfully"+wallpaperArrayList.size(), Toast.LENGTH_SHORT).show();
+//        } else {
+//
+//        }
     }
 
     public void retrieveDataOffline() {
